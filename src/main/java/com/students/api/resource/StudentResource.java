@@ -36,7 +36,7 @@ public class StudentResource {
     }
 
     @DeleteMapping("/delete/{studentId}")
-    ResponseEntity deleteStudent(@PathVariable("studentId") Integer studentId) {
+    ResponseEntity<Student> deleteStudent(@PathVariable("studentId") Integer studentId) {
         service.deleteStudent(studentId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
