@@ -8,8 +8,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 public class StudentsApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(StudentsApiApplication.class, args);
-	}
+    /**
+     * @param args
+     * Main method.
+     */
+    public static void main(final String[] args) {
+        SpringApplication.run(StudentsApiApplication.class, args);
+    }
 
 }

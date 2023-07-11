@@ -12,37 +12,74 @@ import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
+    /**
+     * repo.
+     */
     private final StudentRepository repository;
+    /**
+     * client.
+     */
     private final JsonPlaceholderClient client;
 
-    public StudentServiceImpl(StudentRepository repository, JsonPlaceholderClient client) {
-        this.repository = repository;
-        this.client = client;
+    /**     *
+     * @param repositoryParam repository
+     * @param clientParam client service
+     * Constructor's class.
+     */
+    public StudentServiceImpl(
+            final StudentRepository repositoryParam,
+            final JsonPlaceholderClient clientParam) {
+        this.repository = repositoryParam;
+        this.client = clientParam;
     }
 
+    /**
+     * @return a list of students
+     * get all the students from the db.
+     */
     @Override
     public List<Student> getAllStudents() {
         return repository.findAll();
     }
 
+    /**
+     * @return a student requested by id
+     * @param studentId
+     * get a specific student by id from the db.
+     */
     @Override
-    public Optional<Student> getStudent(Integer studentId) {
+    public Optional<Student> getStudent(final Integer studentId) {
         return repository.findById(studentId);
     }
 
+    /**
+     * @return the new student load to the db
+     * @param student
+     * save a new student onto the db.
+     */
     @Override
-    public Student saveStudent(Student student) {
+    public Student saveStudent(final Student student) {
         return repository.save(student);
     }
 
+    /**
+     * @param studentId
+     * delete a student by id.
+     */
     @Override
-    public void deleteStudent(Integer studentId) {
+    public void deleteStudent(final Integer studentId) {
         repository.deleteById(studentId);
     }
 
+    /**
+     * @return the student updated
+     * @param student
+     * can update a student that exists in the db.
+     */
     @Override
-    public Student updateStudent(Student student) {
-        Optional<Student> studentFound = repository.findById(student.getStudentId());
+    public Student updateStudent(final Student student) {
+        Optional<Student> studentFound =
+                repository.findById(student.getStudentId());
 
         if (studentFound.isPresent()) {
             repository.save(student);
@@ -51,6 +88,10 @@ public class StudentServiceImpl implements StudentService {
         return student;
     }
 
+    /**
+     * @return list of posts
+     * get all the posts from a public api.
+     */
     @Override
     public List<Post> getAllPosts() {
         return client.getAllPosts();
